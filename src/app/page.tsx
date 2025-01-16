@@ -1,100 +1,193 @@
-import Image from "next/image";
+"use client";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
+import Link from "next/link";
+import MovieList from "@/Components/page";
+
+enum TypeEnum {
+  episode = "episode",
+  movie = "movie",
+  series = "series",
+}
+interface MovieInput {
+  title: string;
+  type: TypeEnum;
+  year?: number;
+}
+
+export interface MovieInfo {
+  imdbID: string;
+  Title: string;
+  Type: TypeEnum;
+  Year: string;
+  Poster?: string;
+}
+
+/*
+{
+"Title": "Harry Potter and the Sorcerer's Stone",
+"Year": "2001",
+"imdbID": "tt0241527",
+"Type": "movie",
+"Poster": "https://m.media-amazon.com/images/M/MV5BNTU1MzgyMDMtMzBlZS00YzczLThmYWEtMjU3YmFlOWEyMjE1XkEyXkFqcGc@._V1_SX300.jpg"
+},
+* */
+
+const MOVIES_PER_PAGE = 10;
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const {
+    register: find,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<MovieInput>();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState<TypeEnum>(TypeEnum.movie);
+  const [year, setYear] = useState("");
+  const [movieList, setMovieList] = useState<MovieInfo[]>([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [isLastPage, setIsLastPage] = useState(false);
+  const [totalResults, setTotalResults] = useState(0);
+  const fetchData = async (
+    title: string,
+    type?: TypeEnum,
+    year?: string,
+    page?: number,
+  ) => {
+    const url = `http://www.omdbapi.com/?apikey=21c5d86f&s=${encodeURIComponent(title)}${
+      year ? `&y=${year}` : ""
+    }${page ? `&page=${page}` : ""}&type=${type}`;
+    // const API_KEY =
+    // `http://www.omdbapi.com/?i=tt3896198&apikey=${process.env.API_KEY}&t=${"Harry Potter"}&y=${}&plot=${}`
+    try {
+      setIsLoading(true);
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response finished with status ${response.status}`);
+      } else {
+        const responseData = await response.json();
+
+        if (responseData.Response === "False") {
+          throw new Error(responseData.Response.Error);
+        }
+
+        const movieList = responseData.Search;
+        setIsLastPage(movieList.length < MOVIES_PER_PAGE);
+        // const totalResults =
+        setTotalResults(Number(responseData?.totalResults));
+        setMovieList(movieList);
+        setError("");
+      }
+    } catch (error) {
+      setError(`Failed to load movies: ${error}`);
+      console.log(`Error ${error}`);
+      setMovieList([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  console.log("total", totalResults);
+  const onSubmit: SubmitHandler<MovieInput> = (data) => {
+    setTitle(data.title);
+    setType(data.type);
+    data.year && setYear(data.year.toString());
+
+    fetchData(data.title, data.type, data.year?.toString());
+  };
+
+  const onNextPage = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+
+    fetchData(title, type, year, nextPage);
+  };
+
+  const onPrevPage = () => {
+    const prevPage = page - 1;
+    setPage(prevPage);
+
+    fetchData(title, type, year, prevPage);
+  };
+  console.log("mov", movieList);
+
+  return (
+    <div>
+      <main className="grid lg:grid-cols-2 items-start justify-items-center lg:justify-items-start min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        <form
+          className="flex flex-col gap-4  items-center sm:items-start"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div>
+            {isLoading && <p>LOADING</p>}
+            {error}
+            <label
+              htmlFor="title"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Movie title
+            </label>
+            <input
+              {...find("title", { required: true })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[12rem] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            {errors.title?.type === "required" && (
+              <p className="text-red-900 text-sm" role="alert">
+                Please, enter a movie title
+              </p>
+            )}
+          </div>
+          <div>
+            <label
+              htmlFor="Type"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Type
+            </label>
+
+            <select
+              {...find("type")}
+              className="bg-gray-50 border w-[12rem] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option value="movie">movie</option>
+              <option value="episode">episode</option>
+              <option value="series">series</option>
+            </select>
+          </div>
+          <div>
+            <label
+              htmlFor="Year"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Year
+            </label>
+            <input
+              type="number"
+              {...find("year", { maxLength: 4 })}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[12rem] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
+          </div>
+          <button
+            type="submit"
+            className="text-white w-full  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Read our docs
-          </a>
-        </div>
+            Submit
+          </button>
+        </form>
+
+        <MovieList
+          totalResults={totalResults}
+          movieList={movieList}
+          onNextPage={onNextPage}
+          onPrevPage={onPrevPage}
+          page={page}
+          isLastPage={isLastPage}
+        />
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        2025
       </footer>
     </div>
   );
