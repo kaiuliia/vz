@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import MovieList from "@/components/MovieList";
-import { useLocalStore } from "@/store/useStore";
-import Spinner from "@/components/Spinner";
-import Pagination from "@/components/Pagination";
-import Search from "@/components/Search";
-import { fetchMovieList } from "@/store/omdb";
-import { SearchQuery } from "@/types/movie";
+import { useEffect, useState } from 'react';
+import MovieList from '@/components/MovieList';
+import { useLocalStore } from '@/store/useStore';
+import Spinner from '@/components/Spinner';
+import Pagination from '@/components/Pagination';
+import Search from '@/components/Search';
+import { fetchMovieList } from '@/store/omdb';
+import { SearchQuery } from '@/types/movie';
 
 const MOVIES_PER_PAGE = 10;
 
 export default function Home() {
   const { movieList, setMovieList, page, setPage, searchQuery } =
     useLocalStore();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
   const pages = Math.ceil(totalResults / MOVIES_PER_PAGE);
 
   const onSearch = async (query: SearchQuery) => {
     setIsLoading(true);
-    setError("");
+    setError('');
     setPage(1);
 
     try {
@@ -37,11 +37,11 @@ export default function Home() {
 
   const onPageChanged = async (page: number) => {
     if (!searchQuery) {
-      throw new Error("invalid state");
+      throw new Error('invalid state');
     }
 
     setIsLoading(true);
-    setError("");
+    setError('');
     setPage(page);
 
     try {
@@ -54,21 +54,14 @@ export default function Home() {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    // window.scrollTo({
-    //   top: 100,
-    //   behavior: "smooth",
-    // });
-  }, [movieList]);
-
   return (
-    <div className="lg:p-20 p-8 flex flex-col gap-8">
-      <div className={"flex lg:flex-row gap-4 flex-col"}>
+    <div className='flex flex-col gap-8 p-8 lg:p-20'>
+      <div className={'flex flex-col gap-4 lg:flex-row'}>
         <h1>Find a movie</h1>
         <Search onSearch={onSearch} />
       </div>
       <div>
-        <div className={"h-[45rem]"}>
+        <div className={'h-[45rem]'}>
           {isLoading ? (
             <Spinner />
           ) : (
@@ -80,7 +73,7 @@ export default function Home() {
           <Pagination pages={pages} page={page} onPageChanged={onPageChanged} />
         )}
       </div>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+      <footer className='row-start-3 flex flex-wrap items-center justify-center gap-6'>
         2025
       </footer>
     </div>

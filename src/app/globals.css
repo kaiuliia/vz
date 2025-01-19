@@ -8,7 +8,6 @@
   --font-geist-sans: 'Geist Sans', sans-serif;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -16,7 +15,6 @@
   }
 }
 @layer base {
-
   h1 {
     @apply text-[24px] font-bold;
   }
@@ -32,7 +30,6 @@
   p {
     @apply text-[16px] font-normal;
   }
-
 
   @media (min-width: 768px) {
     h1 {

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface PaginationProps {
   pages: number;
   page: number;
@@ -25,11 +23,11 @@ export default function Pagination({
 
   return (
     <div
-      className={"flex flex-row gap-4 items-center justify-center w-[10rem]"}
+      className={'flex w-[10rem] flex-row items-center justify-center gap-4'}
     >
       {page !== 1 && (
         <button
-          className="text-blue-700 items-center w-full flex flex-row gap-2 cursor-pointer hover:text-blue-900  focus:text-violet-900  font-medium text-sm  sm:w-auto px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-700 hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
           onClick={onPreviousPage}
         >
           Prev
@@ -38,7 +36,7 @@ export default function Pagination({
       {page}/{pages}
       {!isLastPage && (
         <button
-          className="text-blue-700 items-center w-full flex flex-row gap-2 cursor-pointer hover:text-blue-900  focus:text-violet-900  font-medium text-sm  sm:w-auto px-5 py-2.5  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-700 hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
           onClick={onNextPage}
         >
           Next

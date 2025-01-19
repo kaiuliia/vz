@@ -1,7 +1,7 @@
-import { MovieInfo, SearchQuery, WholeMovieInfo } from "@/types/movie";
+import { MovieInfo, SearchQuery, WholeMovieInfo } from '@/types/movie';
 
-const OMDB_API_URL = "http://www.omdbapi.com/";
-const OMDB_API_KEY = "21c5d86f"; // TODO: move to env,
+const OMDB_API_URL = 'http://www.omdbapi.com/';
+const OMDB_API_KEY = '21c5d86f'; // TODO: move to env,
 
 interface MovieListResponse {
   movieList: MovieInfo[];
@@ -12,7 +12,7 @@ export const fetchMovieList = async (
   query: SearchQuery,
   page?: number,
 ): Promise<MovieListResponse> => {
-  let queryParams: Record<string, string> = {
+  const queryParams: Record<string, string> = {
     s: query.title,
     apikey: OMDB_API_KEY,
   };
@@ -39,7 +39,7 @@ export const fetchMovieList = async (
 
   const responseData = await response.json();
 
-  if (responseData.Response === "False") {
+  if (responseData.Response === 'False') {
     throw new Error(responseData.Error);
   }
 
@@ -49,10 +49,10 @@ export const fetchMovieList = async (
 };
 
 export const fetchMovie = async (imdbID: string): Promise<WholeMovieInfo> => {
-  let queryParams: Record<string, string> = {
+  const queryParams: Record<string, string> = {
     i: imdbID,
     apikey: OMDB_API_KEY,
-    plot: "full",
+    plot: 'full',
   };
 
   const response = await fetch(
@@ -65,7 +65,7 @@ export const fetchMovie = async (imdbID: string): Promise<WholeMovieInfo> => {
 
   const responseData = await response.json();
 
-  if (responseData.Response === "False") {
+  if (responseData.Response === 'False') {
     throw new Error(responseData.Error);
   }
 

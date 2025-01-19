@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { MovieInfo } from "@/types/movie";
-import Card from "@/components/Card";
+import { MovieInfo } from '@/types/movie';
+import Card from '@/components/Card';
 
 interface MovieListProps {
   movieList: MovieInfo[];

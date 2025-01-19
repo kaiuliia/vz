@@ -1,7 +1,7 @@
 export enum ContentType {
-  Episode = "episode",
-  Movie = "movie",
-  Series = "series",
+  Episode = 'episode',
+  Movie = 'movie',
+  Series = 'series',
 }
 
 export interface SearchQuery {

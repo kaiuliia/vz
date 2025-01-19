@@ -1,6 +1,6 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useLocalStore } from "@/store/useStore";
-import { SearchQuery } from "@/types/movie";
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useLocalStore } from '@/store/useStore';
+import { SearchQuery } from '@/types/movie';
 
 interface SearchProps {
   onSearch: (query: SearchQuery) => void;
@@ -24,38 +24,38 @@ export default function Search({ onSearch }: SearchProps) {
 
   return (
     <form
-      className="flex lg:flex-row gap-4 flex-col lg:items-center "
+      className='flex flex-col gap-4 lg:flex-row lg:items-center'
       onSubmit={handleSubmit(onSubmit)}
     >
       <input
-        placeholder={"movie title"}
-        {...find("title", { required: true })}
-        className="bg-gray-50 border lg:w-[12rem] w-full border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder={'movie title'}
+        {...find('title', { required: true })}
+        className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
       />
-      {errors.title?.type === "required" && (
-        <p className="text-red-900 text-sm" role="alert">
+      {errors.title?.type === 'required' && (
+        <p className='text-sm text-red-900' role='alert'>
           Please, enter a movie title
         </p>
       )}
 
       <select
-        {...find("type")}
-        className="bg-gray-50 border lg:w-[12rem] w-full border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        {...find('type')}
+        className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
       >
-        <option value="movie">movie</option>
-        <option value="episode">episode</option>
-        <option value="series">series</option>
+        <option value='movie'>movie</option>
+        <option value='episode'>episode</option>
+        <option value='series'>series</option>
       </select>
 
       <input
-        placeholder={"year"}
-        {...find("year")}
-        className="bg-gray-50 border lg:w-[12rem] w-full border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder={'year'}
+        {...find('year')}
+        className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
       />
 
       <button
-        type="submit"
-        className="text-white lg:w-[12rem] w-full  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type='submit'
+        className='w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto lg:w-[12rem] dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
       >
         Submit
       </button>

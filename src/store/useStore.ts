@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { MovieInfo, SearchQuery } from "@/types/movie";
+import { create } from 'zustand';
+import { MovieInfo, SearchQuery } from '@/types/movie';
 
 export interface useLocalState {
   searchQuery?: SearchQuery;
@@ -14,7 +14,7 @@ export interface useLocalState {
   setTotalResults: (totalResults: number) => void;
 }
 
-export const useLocalStore = create<useLocalState>((set, get) => ({
+export const useLocalStore = create<useLocalState>((set) => ({
   searchQuery: undefined,
   setSearchQuery: (query: SearchQuery) => set({ searchQuery: query }),
   page: 0,
