@@ -1,10 +1,8 @@
 'use client';
 
 import { MovieInfo } from '@/types/movie';
-import { useLocalStore } from '@/store/useStore';
-import full_heart from '../../public/full_heart.svg';
-import empty_heart from '../../public/empty_heart.svg';
-import Image from 'next/image';
+import { useLocalStore } from '@/hooks/useStore';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 export function FavoriteButton({ movie }: { movie: MovieInfo }) {
   const { favoriteMovieList, setFavoriteMovieList } = useLocalStore();
@@ -28,14 +26,17 @@ export function FavoriteButton({ movie }: { movie: MovieInfo }) {
     setFavoriteMovieList([...favoriteMovieList]);
   };
 
-  return (
-    <Image
-      className={'cursor-pointer'}
+  return isMovieFavorite ? (
+    <AiFillHeart
+      className='h-8 w-8 cursor-pointer text-red-500'
+      aria-label='Filled heart icon'
       onClick={() => toggleMovieIsFavorite(movie)}
-      src={isMovieFavorite ? full_heart : empty_heart}
-      width={30}
-      height={30}
-      alt={'star'}
+    />
+  ) : (
+    <AiOutlineHeart
+      className='h-8 w-8 cursor-pointer text-red-500'
+      aria-label='Outline heart icon'
+      onClick={() => toggleMovieIsFavorite(movie)}
     />
   );
 }

@@ -27,16 +27,18 @@ export default function Pagination({
     >
       {page !== 1 && (
         <button
-          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-700 hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-700 hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:text-white dark:hover:text-blue-300'
           onClick={onPreviousPage}
         >
           Prev
         </button>
       )}
-      {page}/{pages}
+      <p>
+        {page}/{pages}
+      </p>
       {!isLastPage && (
         <button
-          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-700 hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-700 hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:text-white dark:hover:text-blue-300'
           onClick={onNextPage}
         >
           Next

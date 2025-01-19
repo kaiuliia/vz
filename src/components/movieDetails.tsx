@@ -1,7 +1,7 @@
 import { MovieInfo, WholeMovieInfo } from '@/types/movie';
 import Image from 'next/image';
-import { fetchMovie } from '@/store/omdb';
-import { FavoriteButton } from '@/components/FavoriteButton';
+import { fetchMovie } from '@/api/omdb';
+import { FavoriteButton } from '@/components/favoriteButton';
 
 const extractMovieInfo = (movieData: WholeMovieInfo): MovieInfo => ({
   imdbID: movieData.imdbID,
@@ -40,13 +40,12 @@ export async function MovieDetails({ imdbID }: { imdbID: string }) {
   };
 
   return (
-    <div>
-      <div className={'flex flex-col gap-4'}>
-        <div className={'flex flex-row items-start gap-4 lg:items-center'}>
-          <FavoriteButton movie={extractMovieInfo(movie)}></FavoriteButton>
-          <h2 className={'font-bold'}>{movie.Title}</h2>
-        </div>
+    <div className={'flex flex-col gap-4'}>
+      <div className={'flex flex-row items-start gap-4 lg:items-center'}>
+        <FavoriteButton movie={extractMovieInfo(movie)}></FavoriteButton>
+        <h2 className={'font-bold'}>{movie.Title}</h2>
       </div>
+
       <div className={'grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8'}>
         {movie.Poster !== 'N/A' ? (
           <Image
@@ -69,8 +68,8 @@ export async function MovieDetails({ imdbID }: { imdbID: string }) {
           <tbody>
             {Object.entries(getMovieRecord(movie)).map(([key, value]) => (
               <tr key={key}>
-                <td className='p-1 text-gray-600'>{key}</td>
-                <td className='p-1'>{value}</td>
+                <td className='p-2 text-gray-600 dark:text-white'>{key}</td>
+                <td className='p-2 dark:text-white'>{value}</td>
               </tr>
             ))}
           </tbody>

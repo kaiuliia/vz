@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import Spinner from '@/components/Spinner';
-import { MovieDetails } from '@/components/MovieDetails';
+import Spinner from '@/components/spinner';
+import { MovieDetails } from '@/components/movieDetails';
 
 type Props = {
   params: Promise<{
@@ -12,7 +12,7 @@ export default async function Movie({ params }: Props) {
   const { id } = await params;
 
   return (
-    <div className={'flex flex-col gap-4 p-8 lg:p-20'}>
+    <div className={'gap- flex flex-col p-8 lg:p-20'}>
       <Suspense fallback={<Spinner />}>
         <MovieDetails imdbID={id}></MovieDetails>
       </Suspense>

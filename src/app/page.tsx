@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import MovieList from '@/components/MovieList';
-import { useLocalStore } from '@/store/useStore';
-import Spinner from '@/components/Spinner';
-import Pagination from '@/components/Pagination';
-import Search from '@/components/Search';
-import { fetchMovieList } from '@/store/omdb';
+import { useState } from 'react';
+import MovieList from '@/components/movieList';
+import { useLocalStore } from '@/hooks/useStore';
+import Spinner from '@/components/spinner';
+import Pagination from '@/components/pagination';
+import Search from '@/components/search';
+import { fetchMovieList } from '@/api/omdb';
 import { SearchQuery } from '@/types/movie';
 
 const MOVIES_PER_PAGE = 10;
@@ -57,11 +57,11 @@ export default function Home() {
   return (
     <div className='flex flex-col gap-8 p-8 lg:p-20'>
       <div className={'flex flex-col gap-4 lg:flex-row'}>
-        <h1>Find a movie</h1>
+        <h2>Find a movie</h2>
         <Search onSearch={onSearch} />
       </div>
       <div>
-        <div className={'h-[45rem]'}>
+        <div className={'h-auto'}>
           {isLoading ? (
             <Spinner />
           ) : (
@@ -73,9 +73,6 @@ export default function Home() {
           <Pagination pages={pages} page={page} onPageChanged={onPageChanged} />
         )}
       </div>
-      <footer className='row-start-3 flex flex-wrap items-center justify-center gap-6'>
-        2025
-      </footer>
     </div>
   );
 }

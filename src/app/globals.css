@@ -3,67 +3,48 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #ffffff ;
   --foreground: #171717;
   --font-geist-sans: 'Geist Sans', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme='dark'] {
+  --background: black;
+  --foreground: white;
 }
+
 @layer base {
   h1 {
-    @apply text-[24px] font-bold;
+    @apply text-[24px] font-bold dark:text-white;
   }
 
   h2 {
-    @apply text-[20px] font-semibold;
+    @apply text-[20px] font-semibold dark:text-white;
   }
 
   h3 {
-    @apply text-[18px] font-semibold;
+    @apply text-[18px] font-semibold dark:text-white;
   }
 
   p {
-    @apply text-[16px] font-normal;
-  }
-
-  @media (min-width: 768px) {
-    h1 {
-      @apply text-[32px] font-bold;
-    }
-
-    h2 {
-      @apply text-[24px] font-semibold;
-    }
-
-    h3 {
-      @apply text-[20px] font-semibold;
-    }
-
-    p {
-      @apply text-[18px] font-normal;
-    }
+    @apply text-[16px] font-normal dark:text-white;
   }
 
   @media (min-width: 1024px) {
     h1 {
-      @apply text-[28px] font-bold;
+      @apply text-[28px] font-bold dark:text-white;
     }
 
     h2 {
-      @apply text-[22px] font-semibold;
+      @apply text-[22px] font-semibold dark:text-white;
     }
 
     h3 {
-      @apply text-[18px] font-semibold;
+      @apply text-[18px] font-semibold dark:text-white;
     }
 
     p {
-      @apply text-[16px] font-normal;
+      @apply text-[16px] font-normal dark:text-white;
     }
   }
 }
