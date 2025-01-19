@@ -1,11 +1,11 @@
 'use client';
 
 import { MovieInfo } from '@/types/movie';
-import { useLocalStore } from '@/hooks/useStore';
+import { useFavoritesStore } from '@/hooks/useStore';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 export function FavoriteButton({ movie }: { movie: MovieInfo }) {
-  const { favoriteMovieList, setFavoriteMovieList } = useLocalStore();
+  const { favoriteMovieList, setFavoriteMovieList } = useFavoritesStore();
   const isMovieFavorite = favoriteMovieList.some(
     (favorite) => favorite.imdbID === movie.imdbID,
   );

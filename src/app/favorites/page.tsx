@@ -1,10 +1,10 @@
 'use client';
 
 import MovieList from '@/components/movieList';
-import { useLocalStore } from '@/hooks/useStore';
+import { useFavoritesStore } from '@/hooks/useStore';
 
 export default function Favorites() {
-  const { favoriteMovieList } = useLocalStore();
+  const { favoriteMovieList } = useFavoritesStore();
 
   return favoriteMovieList.length > 0 ? (
     <div className={'pt-8'}>

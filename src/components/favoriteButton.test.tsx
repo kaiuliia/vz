@@ -19,7 +19,7 @@ describe('FavoriteButton', () => {
   });
 
   it('renders the outline heart icon when the movie is not a favorite', () => {
-    jest.spyOn(hooks, 'useLocalStore').mockReturnValue({
+    jest.spyOn(hooks, 'useFavoritesStore').mockReturnValue({
       favoriteMovieList: [],
       setFavoriteMovieList: mockSetFavoriteMovieList,
     });
@@ -30,7 +30,7 @@ describe('FavoriteButton', () => {
   });
 
   it('renders the filled heart icon when the movie is a favorite', () => {
-    jest.spyOn(hooks, 'useLocalStore').mockReturnValue({
+    jest.spyOn(hooks, 'useFavoritesStore').mockReturnValue({
       favoriteMovieList: [mockMovie],
       setFavoriteMovieList: mockSetFavoriteMovieList,
     });
@@ -41,7 +41,7 @@ describe('FavoriteButton', () => {
   });
 
   it('adds the movie to the favorite list when clicking the outline heart icon', () => {
-    jest.spyOn(hooks, 'useLocalStore').mockReturnValue({
+    jest.spyOn(hooks, 'useFavoritesStore').mockReturnValue({
       favoriteMovieList: [],
       setFavoriteMovieList: mockSetFavoriteMovieList,
     });
@@ -55,7 +55,7 @@ describe('FavoriteButton', () => {
   });
 
   it('removes the movie from the favorite list when clicking the filled heart icon', () => {
-    jest.spyOn(hooks, 'useLocalStore').mockReturnValue({
+    jest.spyOn(hooks, 'useFavoritesStore').mockReturnValue({
       favoriteMovieList: [mockMovie],
       setFavoriteMovieList: mockSetFavoriteMovieList,
     });
