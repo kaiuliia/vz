@@ -6,7 +6,7 @@ import { useLocalStore } from '@/hooks/useStore';
 import Spinner from '@/components/spinner';
 import Pagination from '@/components/pagination';
 import Search from '@/components/search';
-import { fetchMovieList } from '@/api/omdb';
+import { fetchMovieList } from '@/actions/omdb';
 import { SearchQuery } from '@/types/movie';
 
 const MOVIES_PER_PAGE = 10;

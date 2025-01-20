@@ -1,6 +1,6 @@
 import { MovieInfo, WholeMovieInfo } from '@/types/movie';
 import Image from 'next/image';
-import { fetchMovie } from '@/api/omdb';
+import { fetchMovie } from '@/actions/omdb';
 import { FavoriteButton } from '@/components/favoriteButton';
 
 const extractMovieInfo = (movieData: WholeMovieInfo): MovieInfo => ({
