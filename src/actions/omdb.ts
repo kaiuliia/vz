@@ -17,14 +17,11 @@ export const fetchMovieList = async (
   const queryParams: Record<string, string> = {
     s: query.title,
     apikey: OMDB_API_KEY,
+    type: query.type,
   };
 
   if (query.year) {
     queryParams.y = query.year.toString();
-  }
-
-  if (query.type) {
-    queryParams.type = query.type;
   }
 
   if (page) {

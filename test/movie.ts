@@ -1,0 +1,33 @@
+import { ContentType, WholeMovieInfo } from '@/types/movie';
+
+export const mockWholeMovieInfo: WholeMovieInfo = {
+  Title: 'Inception',
+  Year: '2010',
+  Rated: 'PG-13',
+  Released: '16 Jul 2010',
+  Runtime: '148 min',
+  Genre: 'Action, Adventure, Sci-Fi',
+  Director: 'Christopher Nolan',
+  Writer: 'Christopher Nolan',
+  Actors: 'Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page',
+  Plot: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
+  Language: 'English, Japanese, French',
+  Country: 'USA, UK',
+  Awards: 'Won 4 Oscars. 158 wins & 220 nominations total',
+  Poster: 'https://example.com/poster/inception.jpg',
+  Ratings: [
+    { Source: 'Internet Movie Database', Value: '8.8/10' },
+    { Source: 'Rotten Tomatoes', Value: '87%' },
+    { Source: 'Metacritic', Value: '74/100' },
+  ],
+  Metascore: '74',
+  imdbRating: '8.8',
+  imdbVotes: '2,254,145',
+  imdbID: 'tt1375666',
+  Type: ContentType.Movie,
+  DVD: '07 Dec 2010',
+  BoxOffice: '$829,895,144',
+  Production: 'Syncopy, Legendary Entertainment, Warner Bros.',
+  Website: 'https://www.warnerbros.com/movies/inception',
+  Response: 'True',
+};
