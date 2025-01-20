@@ -15,36 +15,36 @@
 
 @layer base {
   h1 {
-    @apply text-[24px] font-bold dark:text-white;
+    @apply text-[24px] font-bold  ;
   }
 
   h2 {
-    @apply text-[20px] font-semibold dark:text-white;
+    @apply text-[20px] font-semibold ;
   }
 
   h3 {
-    @apply text-[18px] font-semibold dark:text-white;
+    @apply text-[18px] font-semibold ;
   }
 
   p {
-    @apply text-[16px] font-normal dark:text-white;
+    @apply text-[16px] font-normal ;
   }
 
   @media (min-width: 1024px) {
     h1 {
-      @apply text-[28px] font-bold dark:text-white;
+      @apply text-[28px] font-bold ;
     }
 
     h2 {
-      @apply text-[22px] font-semibold dark:text-white;
+      @apply text-[22px] font-semibold ;
     }
 
     h3 {
-      @apply text-[18px] font-semibold dark:text-white;
+      @apply text-[18px] font-semibold ;
     }
 
     p {
-      @apply text-[16px] font-normal dark:text-white;
+      @apply text-[16px] font-normal ;
     }
   }
 }
@@ -54,3 +54,5 @@ body {
   background: var(--background);
   font-family: var(--font-geist-sans), sans-serif;
 }
+
+

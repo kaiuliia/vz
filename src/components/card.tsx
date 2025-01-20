@@ -9,7 +9,7 @@ interface CardProps {
 
 export default function Card({ movie }: CardProps) {
   return (
-    <div className={'divide-y-2'}>
+    <div className={'divide-y-2 divide-gray-200 dark:divide-gray-600'}>
       <div
         className={
           'flex-col-2 flex items-start justify-start rounded-lg p-2 dark:bg-gray-800'
@@ -31,10 +31,16 @@ export default function Card({ movie }: CardProps) {
         >
           <Link
             href={`/${movie.imdbID}`}
-            className='flex w-full cursor-pointer flex-col gap-2 px-5 text-sm font-medium text-blue-700 underline hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:text-white'
+            className='flex w-full cursor-pointer flex-col gap-2 px-5'
           >
-            <h3>{movie.Title}</h3>
-            <p className={'text-black'}>{movie.Year}</p>
+            <h3
+              className={
+                'text-blue-950 underline hover:text-blue-700 dark:text-white'
+              }
+            >
+              {movie.Title}
+            </h3>
+            <p className={'text-black dark:text-white'}>{movie.Year}</p>
           </Link>
           <FavoriteButton movie={movie}></FavoriteButton>
         </div>

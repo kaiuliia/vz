@@ -27,7 +27,7 @@ export default function Pagination({
     >
       {page !== 1 && (
         <button
-          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-700 hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:text-white dark:hover:text-blue-300'
+          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-950 hover:text-blue-700 dark:text-white dark:hover:text-blue-300'
           onClick={onPreviousPage}
         >
           Prev
@@ -38,7 +38,7 @@ export default function Pagination({
       </p>
       {!isLastPage && (
         <button
-          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-700 hover:text-blue-900 focus:text-violet-900 sm:w-auto dark:text-white dark:hover:text-blue-300'
+          className='flex w-full cursor-pointer flex-row items-center gap-2 px-5 py-2.5 text-sm font-medium text-blue-950 hover:text-blue-700 dark:text-white dark:hover:text-blue-300'
           onClick={onNextPage}
         >
           Next
