@@ -1,7 +1,9 @@
+'use server';
+
 import { MovieInfo, SearchQuery, WholeMovieInfo } from '@/types/movie';
 
 const OMDB_API_URL = 'https://www.omdbapi.com/';
-const OMDB_API_KEY = process.env.NEXT_PUBLIC_OMDB_API_KEY ?? '';
+const OMDB_API_KEY = process.env.OMDB_API_KEY ?? '';
 
 interface MovieListResponse {
   movieList: MovieInfo[];
