@@ -32,7 +32,7 @@ export default function Search({ onSearch }: SearchProps) {
           <input
             placeholder={'movie title'}
             {...find('title', { required: true })}
-            className='block h-[2.5rem] w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+            className='block h-[2.5rem] w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
           />
           {errors.title?.type === 'required' && (
             <p className='text-sm text-red-700' role='alert'>
@@ -42,7 +42,7 @@ export default function Search({ onSearch }: SearchProps) {
         </div>
         <select
           {...find('type')}
-          className='select block h-[2.5rem] w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+          className='select block h-[2.5rem] w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
         >
           <option value='movie'>movie</option>
           <option value='episode'>episode</option>
@@ -55,7 +55,7 @@ export default function Search({ onSearch }: SearchProps) {
             {...find('year', {
               maxLength: 4,
             })}
-            className='block h-[2.5rem] w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+            className='block h-[2.5rem] w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-cyan-500 focus:ring-cyan-500 lg:w-[12rem] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
           />
           {errors.year && (
             <p className='text-sm text-red-700' role='alert'>
@@ -65,7 +65,7 @@ export default function Search({ onSearch }: SearchProps) {
         </div>
         <button
           type='submit'
-          className='h-[2.5rem] w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto lg:w-[12rem] dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+          className='h-[2.5rem] w-full rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-800 sm:w-auto lg:w-[12rem]'
         >
           Submit
         </button>

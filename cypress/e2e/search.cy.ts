@@ -18,13 +18,10 @@ describe('search', () => {
     cy.get('select').select('movie');
     cy.get('input[placeholder="year"]').type('2004');
     cy.get('button[type="submit"]').click();
-    cy.get('ul li').should('have.length.greaterThan', 0);
-    cy.get('ul li')
-      .first()
-      .within(() => {
-        cy.get('h3').should('exist').and('not.be.empty');
-        cy.get('p').should('exist').and('not.be.empty');
-        cy.get('img').should('have.attr', 'src').and('not.be.empty');
-      });
+    cy.get('div').should('have.length.greaterThan', 0);
+    cy.get('div').first();
+    cy.get('h3').should('exist').and('not.be.empty');
+    cy.get('p').should('exist').and('not.be.empty');
+    cy.get('img').should('have.attr', 'src').and('not.be.empty');
   });
 });

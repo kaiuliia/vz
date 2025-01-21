@@ -9,12 +9,8 @@ interface MovieListProps {
 
 export default function MovieList({ movieList }: MovieListProps) {
   return (
-    <div>
-      <ul>
-        <li className={'divide-y-[1px]'}>
-          {movieList?.map((movie) => <Card key={movie.imdbID} movie={movie} />)}
-        </li>
-      </ul>
+    <div className={'flex flex-col gap-1'}>
+      {movieList?.map((movie) => <Card key={movie.imdbID} movie={movie} />)}
     </div>
   );
 }

@@ -58,7 +58,7 @@ export async function MovieDetails({ imdbID }: { imdbID: string }) {
         ) : (
           <div
             className={
-              'flex h-[20rem] w-[15rem] items-center justify-center rounded-lg border-2 border-gray-300 bg-gray-200 text-gray-400 lg:h-1/2'
+              'flex h-[20rem] w-[15rem] items-center justify-center border-2 border-gray-300 bg-gray-200 text-gray-400 lg:h-1/2 dark:border-gray-800 dark:bg-gray-900'
             }
           >
             <p>No poster</p>

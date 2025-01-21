@@ -19,9 +19,9 @@ export default function DarkModeToggle() {
   return (
     <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
       {theme === 'light' ? (
-        <AiFillMoon className='h-6 w-6 text-gray-800' />
+        <AiFillMoon className='h-6 w-6 text-amber-400' />
       ) : (
-        <AiFillSun className='h-6 w-6 text-white' />
+        <AiFillSun className='h-6 w-6 text-amber-400' />
       )}
     </button>
   );
