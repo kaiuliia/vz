@@ -11,7 +11,7 @@ export function Header() {
   return (
     <header
       className={
-        'fixed flex h-[4rem] w-full flex-row items-center justify-between gap-8 bg-gray-100 px-10 shadow dark:bg-gray-800'
+        'fixed z-[100] flex h-[4rem] w-full flex-row items-center justify-between gap-8 bg-gray-100 px-10 shadow dark:bg-gray-800'
       }
     >
       <div className={'flex flex-row gap-6'}>

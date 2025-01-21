@@ -7,7 +7,7 @@ export default function Favorites() {
   const { favoriteMovieList } = useFavoritesStore();
 
   return favoriteMovieList.length > 0 ? (
-    <div className={'p-20'}>
+    <div className={'pt-10 lg:p-20'}>
       <MovieList movieList={favoriteMovieList}></MovieList>
     </div>
   ) : (

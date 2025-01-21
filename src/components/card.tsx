@@ -11,7 +11,7 @@ export default function Card({ movie }: CardProps) {
   return (
     <div
       className={
-        'flex-col-2 flex items-start justify-start rounded-lg bg-gray-50 p-2 dark:bg-gray-800'
+        'flex-col-2 relative z-[50] flex items-start justify-start rounded-lg bg-gray-50 p-2 dark:bg-gray-800'
       }
     >
       {movie.Poster && movie.Poster !== 'N/A' ? (
@@ -19,7 +19,7 @@ export default function Card({ movie }: CardProps) {
       ) : (
         <div
           className={
-            'flex h-[4.375rem] w-[3.75rem] items-center justify-center border-2 border-gray-300 bg-gray-200 text-gray-400 dark:border-gray-800 dark:bg-gray-900'
+            'fit-content flex h-[4.375rem] w-[3.75rem] items-center justify-center border-2 border-gray-300 bg-gray-200 text-gray-400 dark:border-gray-800 dark:bg-gray-900'
           }
         >
           <p className={'text-center text-xs'}>No poster</p>
@@ -39,8 +39,11 @@ export default function Card({ movie }: CardProps) {
           </h3>
           <p className={'text-orange-700'}>{movie.Year}</p>
         </Link>
-        <FavoriteButton movie={movie}></FavoriteButton>
+        <div>
+          <FavoriteButton movie={movie}></FavoriteButton>
+        </div>
       </div>
     </div>
   );
 }
+// className={'absolute right-3 top-2'}
